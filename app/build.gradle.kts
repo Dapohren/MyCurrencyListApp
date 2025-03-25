@@ -50,8 +50,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
     kapt("androidx.lifecycle:lifecycle-compiler:2.8.7")
 
-    implementation("com.squareup.okhttp3:okhttp:4.11.0") // Последняя версия на момент ответа
-    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0") // Или более позднюю версию, если доступна
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0") 
 
 
     // Kotlin Coroutines

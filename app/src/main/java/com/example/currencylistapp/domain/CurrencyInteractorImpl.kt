@@ -1,9 +1,7 @@
 package com.example.currencylistapp.domain
 
 import com.example.currencylistapp.data.CurrencyRepository
-import com.example.currencylistapp.data.ValCurs
 import com.example.currencylistapp.data.Valute
-import javax.inject.Inject
 
 class CurrencyInteractorImpl(private val currencyRepository: CurrencyRepository) : CurrencyInteractor {
     override suspend fun getCurrencies(): List<Valute> {

@@ -1,6 +1,5 @@
 package com.example.currencylistapp.domain
 
-import com.example.currencylistapp.data.ValCurs
 import com.example.currencylistapp.data.Valute
 
 interface CurrencyInteractor {

@@ -1,7 +1,6 @@
 package com.example.currencylistapp.di
 
 import android.app.Application
-import android.content.Context
 import androidx.work.WorkerFactory
 import com.example.currencylistapp.data.CurrencyRepository
 import com.example.currencylistapp.data.CurrencyRepositoryImpl

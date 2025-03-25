@@ -1,5 +1,6 @@
 package com.example.currencylistapp.ui
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
@@ -31,7 +32,6 @@ class CurrencyListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_currency_list)
 
-        // Инициализация ViewModel ДО нахождения View элементов
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         recyclerView = findViewById(R.id.recyclerView)
@@ -54,6 +54,5 @@ class CurrencyListActivity : AppCompatActivity() {
         refreshButton.setOnClickListener {
             viewModel.loadCurrencies()
         }
-
+        }
     }
-}

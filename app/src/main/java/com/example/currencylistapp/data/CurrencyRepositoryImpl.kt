@@ -61,7 +61,7 @@ class CurrencyRepositoryImpl(private val netClient: NetClient) : CurrencyReposit
                 null
             }
         } catch (e: Exception) {
-            null // Или выбросить исключение, в зависимости от требований
+            null
         } as Valute?
     }
 }

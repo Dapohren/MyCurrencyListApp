@@ -1,6 +1,5 @@
 package com.example.currencylistapp
 
-// DateUtils.kt
 import com.example.currencylistapp.data.ValCurs
 import com.example.currencylistapp.data.Valute
 import org.xmlpull.v1.XmlPullParser

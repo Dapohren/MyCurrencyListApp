@@ -6,14 +6,8 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import com.example.currencylistapp.App
-import com.example.currencylistapp.data.CurrencyRepository
 import com.example.currencylistapp.domain.CurrencyInteractor
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 class CurrencyUpdateWorker(
     context: Context,
@@ -40,13 +34,10 @@ class CurrencyUpdateWorker(
 
              WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 WORK_NAME,
-                 ExistingPeriodicWorkPolicy.REPLACE, // Или KEEP, в зависимости от нужного поведения
+                 ExistingPeriodicWorkPolicy.REPLACE,
                  workRequest
              )
         }
 
-        fun cancelWork(context: Context) {
-              WorkManager.getInstance(context).cancelUniqueWork(WORK_NAME)
-        }
     }
 }

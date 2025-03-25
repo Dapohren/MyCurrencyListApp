@@ -8,7 +8,6 @@ import androidx.work.WorkManager
 import com.example.currencylistapp.di.AppComponent
 import com.example.currencylistapp.di.AppModule
 import com.example.currencylistapp.di.DaggerAppComponent
-import com.example.currencylistapp.ui.CurrencyListActivity
 import com.example.currencylistapp.worker.AppWorkerFactory
 import com.example.currencylistapp.worker.CurrencyUpdateWorker
 import javax.inject.Inject
@@ -23,18 +22,15 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
             appComponent = DaggerAppComponent.builder()
-            .appModule(AppModule(this)) // Передаем Application в AppModule
+            .appModule(AppModule(this))
             .build()
 
-        val configuration = Configuration.Builder()
-            .setWorkerFactory(appComponent.workerFactory()) // Use the provided workerFactory
-            .build()
-        WorkManager.initialize(this, configuration)
-        /*appComponent.inject(this)
-        Log.d("Worker factory: %s", workerFactory.toString()) // Log the workerFactory
+        appComponent.inject(this)
+        Log.d("Worker factory: %s", workerFactory.toString())
 
         WorkManager.initialize(this, Configuration.Builder().setWorkerFactory(workerFactory).build())
-            //CurrencyUpdateWorker.startPeriodicWork(this)*/
+            CurrencyUpdateWorker.startPeriodicWork(this)
     }
+
 
 }
