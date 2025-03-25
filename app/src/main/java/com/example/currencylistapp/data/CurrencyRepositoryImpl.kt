@@ -1,6 +1,11 @@
 package com.example.currencylistapp.data
 
+import android.util.Log
 import com.example.currencylistapp.getCurrentDate
+import com.example.currencylistapp.parseXml
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
 
 
 class CurrencyRepositoryImpl(private val netClient: NetClient) : CurrencyRepository {
@@ -10,9 +15,15 @@ class CurrencyRepositoryImpl(private val netClient: NetClient) : CurrencyReposit
 
     override suspend fun getCurrencies(): List<Valute> {
         val currentDate = getCurrentDate()
+        return withContext(Dispatchers.IO) {
+            val response: ResponseBody = netClient.api.getCurrencies(currentDate)
+            val xmlString = response.string()
+            val valCurs = parseXml(xmlString)
+            Log.e("CurrencyRepositoryImpl", "getCurrencies: $valCurs")
+            valCurs.valutes
+        }
         return try {
-            val valCurs = netClient.api.getCurrencies()
-            cachedCurrencies = valCurs.valutes
+            cachedCurrencies = getCurrencies()
             cachedDate = currentDate
             cachedCurrencies
         } catch (e: Exception) {
@@ -38,18 +49,19 @@ class CurrencyRepositoryImpl(private val netClient: NetClient) : CurrencyReposit
 
         // Если нет в кэше или дата другая - запрашиваем с API.
         return try {
-            val valCurs = netClient.api.getCurrencies()
-            val currency = valCurs.valutes.find { it.id == id }
+            val valCurs = getCurrencies()
+            val currency = valCurs.find { it.id == id }
             if (currency != null) {
                 // Обновляем кэш и возвращаем валюту.
-                cachedCurrencies = valCurs.valutes
+                cachedCurrencies = getCurrencies()
                 cachedDate = currentDate
                 currency
+                Log.e("CurrencyRepositoryImpl", "getCurrency: $currency")
             } else {
                 null
             }
         } catch (e: Exception) {
             null // Или выбросить исключение, в зависимости от требований
-        }
+        } as Valute?
     }
 }

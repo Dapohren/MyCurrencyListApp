@@ -37,8 +37,8 @@ class CurrencyAdapter(private val viewModel: MainViewModel) :
 
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
         val currency = getItem(position)
-        holder.currencyNameTextView.text = currency.name
-        holder.currencyValueTextView.text = currency.value
+        holder.currencyNameTextView.text = currency.value
+        holder.currencyValueTextView.text = currency.nominal
 
         holder.itemView.setOnLongClickListener {
             viewModel.updateCurrency(currency.id)

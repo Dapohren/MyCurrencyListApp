@@ -48,10 +48,12 @@ class CurrencyListActivity : AppCompatActivity() {
 
         viewModel.isLoading.observe(this, Observer { isLoading ->
             progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            recyclerView.visibility = if (isLoading) View.GONE else View.VISIBLE
         })
 
         refreshButton.setOnClickListener {
             viewModel.loadCurrencies()
         }
+
     }
 }

@@ -47,6 +47,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
     kapt("androidx.lifecycle:lifecycle-compiler:2.8.7")
 
     implementation("com.squareup.okhttp3:okhttp:4.11.0") // Последняя версия на момент ответа

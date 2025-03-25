@@ -3,11 +3,12 @@ package com.example.currencylistapp.data
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 
 class RetrofitNetClient : NetClient {
 
-    private val baseUrl = "https://cbr.ru/"
+    private val baseUrl = "https://cbr.ru/scripts/"
 
     private val retrofit: Retrofit by lazy {
         val logging = HttpLoggingInterceptor()
@@ -18,7 +19,7 @@ class RetrofitNetClient : NetClient {
 
         Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(SimpleXmlConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
             .client(httpClient)
             .build()
     }

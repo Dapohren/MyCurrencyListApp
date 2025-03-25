@@ -29,6 +29,14 @@ data class Valute(
     @param:Element(name = "Value")
     val value: String,
 
+    @field:Element(name = "Nominal")
+    @param:Element(name = "Nominal")
+    val nominal: String,
+
+    @field:Element(name = "VunitRate")
+    @param:Element(name = "VunitRate")
+    val vunitRate: String,
+
     @field:Attribute(name = "ID")
     @param:Attribute(name = "ID")
     val id: String
