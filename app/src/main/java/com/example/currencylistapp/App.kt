@@ -25,11 +25,16 @@ class App : Application() {
             appComponent = DaggerAppComponent.builder()
             .appModule(AppModule(this)) // Передаем Application в AppModule
             .build()
-        appComponent.inject(this)
+
+        val configuration = Configuration.Builder()
+            .setWorkerFactory(appComponent.workerFactory()) // Use the provided workerFactory
+            .build()
+        WorkManager.initialize(this, configuration)
+        /*appComponent.inject(this)
         Log.d("Worker factory: %s", workerFactory.toString()) // Log the workerFactory
 
         WorkManager.initialize(this, Configuration.Builder().setWorkerFactory(workerFactory).build())
-            //CurrencyUpdateWorker.startPeriodicWork(this)
+            //CurrencyUpdateWorker.startPeriodicWork(this)*/
     }
 
 }

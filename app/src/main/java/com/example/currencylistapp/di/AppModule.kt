@@ -2,6 +2,7 @@ package com.example.currencylistapp.di
 
 import android.app.Application
 import android.content.Context
+import androidx.work.WorkerFactory
 import com.example.currencylistapp.data.CurrencyRepository
 import com.example.currencylistapp.data.CurrencyRepositoryImpl
 import com.example.currencylistapp.data.NetClient
@@ -9,6 +10,7 @@ import com.example.currencylistapp.data.RetrofitNetClient
 import com.example.currencylistapp.domain.CurrencyInteractor
 import com.example.currencylistapp.domain.CurrencyInteractorImpl
 import com.example.currencylistapp.presentation.MainViewModelFactory
+import com.example.currencylistapp.worker.AppWorkerFactory
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -44,6 +46,11 @@ class AppModule(private val application: Application) {
     @Singleton
     fun provideCurrencyInteractor(currencyRepository: CurrencyRepository): CurrencyInteractor {
         return CurrencyInteractorImpl(currencyRepository)
+    }
+
+    @Provides
+    fun provideWorkerFactory(workerFactory: AppWorkerFactory): WorkerFactory {
+        return workerFactory
     }
 
 }
